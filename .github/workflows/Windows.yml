@@ -21,24 +21,42 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: create python3b hardlink
+        run: |
+          mklink /H C:\hostedtoolcache\windows\Python\3.9.1\x64\python3b.exe C:\hostedtoolcache\windows\Python\3.9.1\x64\python3.exe
+          
+      - name: create python3c symlink
+        run: |
+          mklink C:\hostedtoolcache\windows\Python\3.9.1\x64\python3c.exe C:\hostedtoolcache\windows\Python\3.9.1\x64\python3.exe
+          
       - name: python --version.
         run: |
           which python
           python --version
 
+      - name: python3b --version.
+        run: |
+          which python3
+          python3 --version
+          
+      - name: python3c --version.
+        run: |
+          which python3
+          python3 --version
+          
       - name: python3 --version.
         run: |
           which python3
           python3 --version
 
 
-      - name: absolute path to python --version.
-        run: |
-          C:/hostedtoolcache/windows/Python/3.9.1/x64/python.exe --version
+      #- name: absolute path to python --version.
+      #  run: |
+      #    C:/hostedtoolcache/windows/Python/3.9.1/x64/python.exe --version
 
-      - name: absolute path to python3 --version.
-        run: |
-          C:/hostedtoolcache/windows/Python/3.9.1/x64/python3.exe --version
+      #- name: absolute path to python3 --version.
+      #  run: |
+      #    C:/hostedtoolcache/windows/Python/3.9.1/x64/python3.exe --version
 
 
       - name: create venv with python
@@ -46,6 +64,16 @@ jobs:
           python -m venv py-env
           ls py-env
 
+      - name: create venv with python3b
+        run: |
+          python3b -m venv py3b-env
+          ls py3b-env
+          
+      - name: create venv with python3c
+        run: |
+          python3x -m venv py3x-env
+          ls py3c-env
+          
       - name: create venv with python3
         run: |
           python3 -m venv py3-env
