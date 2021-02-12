@@ -19,8 +19,9 @@ jobs:
       config: "Release"
 
     steps:
-      - uses: Disable windows defender controlled folder accesss
-      - name: path
+      - uses: actions/checkout@v2
+      
+      - name: Disable windows defender controlled folder accesss
         run:
           Set-MpPreference -EnableControlledFolderAccess Disabled
           
