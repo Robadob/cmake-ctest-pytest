@@ -68,17 +68,17 @@ jobs:
 
       - name: create venv with python3b
         run: |
-          python3b -m venv py3b-env
+          "C:/hostedtoolcache/windows/Python/3.9.1/x64/python3b.exe" -m venv py3b-env
           ls py3b-env
           
       - name: create venv with python3c
         run: |
-          python3x -m venv py3x-env
+          "C:/hostedtoolcache/windows/Python/3.9.1/x64/python3c.exe" -m venv py3c-env
           ls py3c-env
           
       - name: create venv with python3
         run: |
-          python3 -m venv py3-env
+          "C:/hostedtoolcache/windows/Python/3.9.1/x64/python3.exe" -m venv py3-env
           ls py3-env
 
       # - name: python3 version.
