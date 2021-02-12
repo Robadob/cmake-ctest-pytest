@@ -25,9 +25,17 @@ jobs:
         run: |
           Remove-Item "C:/hostedtoolcache/windows/Python/3.7.9/x64/python3.exe"
           
+      - name: Where python3
+        run: |
+          where python3
+          
       - name: Create python3 as a copy
         run: |
           New-Item -ItemType HardLink -Path "C:/hostedtoolcache/windows/Python/3.7.9/x64/python3.exe" -Target "C:/hostedtoolcache/windows/Python/3.7.9/x64/python.exe"
+          
+      - name: Where python3
+        run: |
+          where python3
           
       - name: python3 --version.
         run: |
