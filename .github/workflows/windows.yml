@@ -23,16 +23,17 @@ jobs:
 
       - name: create python3b hardlink
         run: |
-          mklink /H C:\hostedtoolcache\windows\Python\3.9.1\x64\python3b.exe C:\hostedtoolcache\windows\Python\3.9.1\x64\python3.exe
+          mklink /H C:\hostedtoolcache\windows\Python\3.9.1\x64\python3b.exe C:\hostedtoolcache\windows\Python\3.9.1\x64\python.exe
           
       - name: create python3c symlink
         run: |
-          mklink C:\hostedtoolcache\windows\Python\3.9.1\x64\python3c.exe C:\hostedtoolcache\windows\Python\3.9.1\x64\python3.exe
+          mklink C:\hostedtoolcache\windows\Python\3.9.1\x64\python3c.exe C:\hostedtoolcache\windows\Python\3.9.1\x64\python.exe
           
       - name: python --version.
         run: |
           which python
           python --version
+
       - name: python3b --version.
         run: |
           which python3
@@ -47,6 +48,8 @@ jobs:
         run: |
           which python3
           python3 --version
+
+
       #- name: absolute path to python --version.
       #  run: |
       #    C:/hostedtoolcache/windows/Python/3.9.1/x64/python.exe --version
@@ -60,6 +63,7 @@ jobs:
         run: |
           python -m venv py-env
           ls py-env
+
       - name: create venv with python3b
         run: |
           python3b -m venv py3b-env
@@ -74,6 +78,7 @@ jobs:
         run: |
           python3 -m venv py3-env
           ls py3-env
+
       # - name: python3 version.
       #   run: |
       #     C:/hostedtoolcache/windows/Python/3.9.1/x64/python.exe --version
