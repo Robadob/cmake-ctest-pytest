@@ -21,13 +21,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Where python3
+        run: |
+          "where python3" | cmd
+          
       - name: Remove python3
         run: |
           Remove-Item "C:/hostedtoolcache/windows/Python/3.7.9/x64/python3.exe"
           
       - name: Where python3
         run: |
-          where python3
+          "where python3" | cmd
           
       - name: Create python3 as a copy
         run: |
@@ -35,7 +39,7 @@ jobs:
           
       - name: Where python3
         run: |
-          where python3
+          "where python3" | cmd
           
       - name: python3 --version.
         run: |
