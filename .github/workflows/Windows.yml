@@ -35,7 +35,7 @@ jobs:
           
       - name: Create python3 as a copy
         run: |
-          New-Item -ItemType HardLink -Path "C:/hostedtoolcache/windows/Python/3.7.9/x64/python3.exe" -Target "C:/hostedtoolcache/windows/Python/3.7.9/x64/python.exe"
+          Copy-Item "C:/hostedtoolcache/windows/Python/3.7.9/x64/python.exe" -Destination "C:/hostedtoolcache/windows/Python/3.7.9/x64/python3.exe"
           
       - name: Where python3
         run: |
