@@ -38,12 +38,12 @@ jobs:
 
       - name: python3b --version.
         run: |
-          which python3
+          which python3b
           python3 --version
           
       - name: python3c --version.
         run: |
-          which python3
+          which python3c
           python3 --version
           
       - name: python3 --version.
