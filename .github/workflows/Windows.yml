@@ -21,30 +21,25 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: disable windows defender
+      - name: Remove python3
         run: |
-          Set-MpPreference -DisableRealtimeMonitoring $true
+          Remove-Item "C:/hostedtoolcache/windows/Python/3.9.1/x64/python3.exe"
           
-      - name: python --version.
+      - name: Create python3b as a copy
         run: |
-          which python
-          python --version
+          Copy-Item "C:/hostedtoolcache/windows/Python/3.9.1/x64/python.exe" -Destination "C:/hostedtoolcache/windows/Python/3.9.1/x64/python3b.exe"
           
-      - name: python3 --version.
+      - name: python3b --version.
         run: |
-          which python3
-          python3 --version
+          which python3b
+          python3b --version
 
           
       - name: create venv with python
         run: |
-          python -m venv py-env
-          ls py-env
+          python3b -m venv py-env
+          ls py3b-env
           
-      - name: create venv with python3
-        run: |
-          python3 -m venv py3-env
-          ls py3-env
 
 
 
