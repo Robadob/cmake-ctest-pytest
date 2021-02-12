@@ -20,7 +20,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+      - name: path
+        run:
+          echo $Env:Path
+          
       - name: Where python3
         run: |
           "where python3" | cmd
