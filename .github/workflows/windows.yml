@@ -24,7 +24,7 @@ jobs:
       - name: create python3b hardlink
         run: |
           New-Item -Path "C:\hostedtoolcache\windows\Python\3.9.1\x64\python3b.exe" -ItemType HardLink -Value "C:\hostedtoolcache\windows\Python\3.9.1\x64\python.exe"
-      # mklink /H C:\hostedtoolcache\windows\Python\3.9.1\x64\python3b.exe C:\hostedtoolcache\windows\Python\3.9.1\x64\python.exe
+      # mklink /H C:\hostedtoolcache\windows\Python\3.9.1\x64\python3b.exe C:\hostedtoolcache\windows\Python\3.9.1\x64\python.exe  ss
           
       - name: create python3c symlink
         run: |
