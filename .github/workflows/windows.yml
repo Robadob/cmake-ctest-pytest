@@ -1,0 +1,92 @@
+name: Windows
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      # explicit include-based build matrix, of known valid options
+      matrix:
+        include:
+          - os: windows-2019
+            visual_studio: "Visual Studio 16 2019"
+    env:
+      build_dir: "build"
+      config: "Release"
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: create python3b hardlink
+        run: |
+          mklink /H C:\hostedtoolcache\windows\Python\3.9.1\x64\python3b.exe C:\hostedtoolcache\windows\Python\3.9.1\x64\python3.exe
+          
+      - name: create python3c symlink
+        run: |
+          mklink C:\hostedtoolcache\windows\Python\3.9.1\x64\python3c.exe C:\hostedtoolcache\windows\Python\3.9.1\x64\python3.exe
+          
+      - name: python --version.
+        run: |
+          which python
+          python --version
+      - name: python3b --version.
+        run: |
+          which python3
+          python3 --version
+          
+      - name: python3c --version.
+        run: |
+          which python3
+          python3 --version
+          
+      - name: python3 --version.
+        run: |
+          which python3
+          python3 --version
+      #- name: absolute path to python --version.
+      #  run: |
+      #    C:/hostedtoolcache/windows/Python/3.9.1/x64/python.exe --version
+
+      #- name: absolute path to python3 --version.
+      #  run: |
+      #    C:/hostedtoolcache/windows/Python/3.9.1/x64/python3.exe --version
+
+
+      - name: create venv with python
+        run: |
+          python -m venv py-env
+          ls py-env
+      - name: create venv with python3b
+        run: |
+          python3b -m venv py3b-env
+          ls py3b-env
+          
+      - name: create venv with python3c
+        run: |
+          python3x -m venv py3x-env
+          ls py3c-env
+          
+      - name: create venv with python3
+        run: |
+          python3 -m venv py3-env
+          ls py3-env
+      # - name: python3 version.
+      #   run: |
+      #     C:/hostedtoolcache/windows/Python/3.9.1/x64/python.exe --version
+
+      # ls -al C:/hostedtoolcache/windows/Python/3.9.1/x64/
+
+
+      - name: Configure CMake
+        id: configure
+        run: cmake . -B ${{ env.build_dir }} -G "${{ matrix.visual_studio }}" -A x64
+        shell: bash
+
+
+      # - name: Build
+      #   run: cmake --build . --config ${{ env.config }} --target all --verbose
+      #   working-directory: ${{ env.build_dir }}
