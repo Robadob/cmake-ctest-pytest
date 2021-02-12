@@ -21,71 +21,31 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: create python3b hardlink
+      - name: disable windows defender
         run: |
-          New-Item -Path "C:\hostedtoolcache\windows\Python\3.9.1\x64\python3b.exe" -ItemType HardLink -Value "C:\hostedtoolcache\windows\Python\3.9.1\x64\python.exe"
-      # mklink /H C:\hostedtoolcache\windows\Python\3.9.1\x64\python3b.exe C:\hostedtoolcache\windows\Python\3.9.1\x64\python.exe  ss
-          
-      - name: create python3c symlink
-        run: |
-          New-Item -Path "C:\hostedtoolcache\windows\Python\3.9.1\x64\python3c.exe" -ItemType SymbolicLink -Value "C:\hostedtoolcache\windows\Python\3.9.1\x64\python.exe"
-      # mklink C:\hostedtoolcache\windows\Python\3.9.1\x64\python3c.exe C:\hostedtoolcache\windows\Python\3.9.1\x64\python.exe
+          Set-MpPreference -DisableRealtimeMonitoring $true
           
       - name: python --version.
         run: |
           which python
           python --version
-
-      - name: python3b --version.
-        run: |
-          which python3b
-          python3 --version
-          
-      - name: python3c --version.
-        run: |
-          which python3c
-          python3 --version
           
       - name: python3 --version.
         run: |
           which python3
           python3 --version
 
-
-      #- name: absolute path to python --version.
-      #  run: |
-      #    C:/hostedtoolcache/windows/Python/3.9.1/x64/python.exe --version
-
-      #- name: absolute path to python3 --version.
-      #  run: |
-      #    C:/hostedtoolcache/windows/Python/3.9.1/x64/python3.exe --version
-
-
+          
       - name: create venv with python
         run: |
           python -m venv py-env
           ls py-env
-
-      - name: create venv with python3b
-        run: |
-          & "C:/hostedtoolcache/windows/Python/3.9.1/x64/python3b.exe" -m venv py3b-env
-          ls py3b-env
-          
-      - name: create venv with python3c
-        run: |
-          & "C:/hostedtoolcache/windows/Python/3.9.1/x64/python3c.exe" -m venv py3c-env
-          ls py3c-env
           
       - name: create venv with python3
         run: |
-          & "C:/hostedtoolcache/windows/Python/3.9.1/x64/python3.exe" -m venv py3-env
+          python3 -m venv py3-env
           ls py3-env
 
-      # - name: python3 version.
-      #   run: |
-      #     C:/hostedtoolcache/windows/Python/3.9.1/x64/python.exe --version
-
-      # ls -al C:/hostedtoolcache/windows/Python/3.9.1/x64/
 
 
       - name: Configure CMake
